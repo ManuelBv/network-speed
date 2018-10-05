@@ -9,7 +9,7 @@
     }
 </style>
 <!-- the three images are 1MB in total -->
-
+<!-- network speed info https://developers.google.com/web/tools/chrome-devtools/network-performance/network-conditions -->
 <div class="img_holder">
     <img class="img1" src="">
     <img class="img2" src="">
@@ -36,14 +36,14 @@
         var totalTime = ((endTime - startTime) / 1000).toFixed(2);
         var networkSpeed = (1 / totalTime).toFixed(2); // the three images are 1 MB in total so the speed is in MB/s
 
-        if (networkSpeed <= 0.03) {
+        if (networkSpeed <= 0.09) {
             networkType = '2G';
-        } else if (networkSpeed > 0.03 && networkSpeed <= 5.25) {
+        } else if (networkSpeed > 0.09 && networkSpeed <= 0.5) {
             networkType = '3G';
-        } else if (networkSpeed > 5.25 && networkSpeed <= 12.5) {
+        } else if (networkSpeed > 0.5 && networkSpeed <= 3.75) {
             networkType = '4G';
         } else {
-            networkType = '5G';
+            networkType = 'WiFi or LAN';
         }
 
         console.log('Images 1MB in total loaded in:', totalTime, 'seconds; speed:', networkSpeed, 'MB; network type:', networkType + '!');

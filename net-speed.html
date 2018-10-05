@@ -9,7 +9,7 @@
     }
 </style>
 <!-- the three images are 1MB in total -->
-<!-- speed table https://kenstechtips.com/index.php/download-speeds-2g-3g-and-4g-actual-meaning -->
+
 <div class="img_holder">
     <img class="img1" src="">
     <img class="img2" src="">
@@ -34,7 +34,7 @@
     img3.onload = function () {
         var endTime = (new Date()).getTime();
         var totalTime = ((endTime - startTime) / 1000).toFixed(2);
-        var networkSpeed = (1 / totalTime).toFixed(2);
+        var networkSpeed = (1 / totalTime).toFixed(2); // the three images are 1 MB in total so the speed is in MB/s
 
         if (networkSpeed <= 0.03) {
             networkType = '2G';
@@ -43,7 +43,7 @@
         } else if (networkSpeed > 5.25 && networkSpeed <= 12.5) {
             networkType = '4G';
         } else {
-            networkType = 'WiFi or LAN';
+            networkType = '5G';
         }
 
         console.log('Images 1MB in total loaded in:', totalTime, 'seconds; speed:', networkSpeed, 'MB; network type:', networkType + '!');

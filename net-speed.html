@@ -21,6 +21,7 @@
     var img1 = document.querySelector('.img1');
     var img2 = document.querySelector('.img2');
     var img3 = document.querySelector('.img3');
+    var networkType = '';
 
     img1.onload = function () {
         img2.src = 'https://assets.matchesfashion.com/content/mf/ISSUES/2018/WOMENS/SEP/0926/HP/images/hero-2.jpg';
@@ -32,9 +33,20 @@
 
     img3.onload = function () {
         var endTime = (new Date()).getTime();
-        var totalTime = (endTime - startTime) / 1000;
-        var networkSpeed = 1 / totalTime;
-        console.log('Img loaded in ', totalTime, 'seconds and speed in MB is at least', networkSpeed);
+        var totalTime = ((endTime - startTime) / 1000).toFixed(2);
+        var networkSpeed = (1 / totalTime).toFixed(2);
+
+        if (networkSpeed <= 0.03) {
+            networkType = '2G';
+        } else if (networkSpeed > 0.03 && networkSpeed <= 5.25) {
+            networkType = '3G';
+        } else if (networkSpeed > 5.25 && networkSpeed <= 12.5) {
+            networkType = '4G';
+        } else {
+            networkType = 'WiFi or LAN';
+        }
+
+        console.log('Images 1MB in total loaded in:', totalTime, 'seconds; speed:', networkSpeed, 'MB; network type:', networkType + '!');
     }
 
     img1.src = 'https://assets.matchesfashion.com/content/mf/ISSUES/2018/WOMENS/SEP/0926/HP/images/hero-1.jpg';
